@@ -1,6 +1,7 @@
 const enhancer = require('./enhancer.js');
 // test away!
 const itemTest = {name: "thing", durability: 10, enhancement: 10}
+const itemTest2 = {name: "thing", durability: 10, enhancement: 20}
 
 describe("enhancers", () => {
     describe("repair", () => {
@@ -14,6 +15,10 @@ describe("enhancers", () => {
     describe("succeed", () => {
         it("doesn't crash", () => {
         enhancer.succeed(itemTest)
+        })
+        it("succeeds", () => {
+            expect(enhancer.succeed(itemTest)).toEqual({ name: "thing", durability: 10, enhancement: 11 })
+            expect(enhancer.succeed(itemTest2)).toEqual({ name: "thing", durability: 10, enhancement: 20 })
         })
     })
     describe("fail", () => {
