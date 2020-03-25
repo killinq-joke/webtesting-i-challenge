@@ -20,7 +20,24 @@ function succeed(item) {
 }
 
 function fail(item) {
-  return { ...item };
+  if (item.enhancement > 16) {
+    
+    return {...item,
+            enhancement: item.enhancement - 1
+    }
+
+  } else if (item.enhancement >= 15) {
+    
+    return {...item,
+            enhancement: item.enhancement - 10
+    }
+    
+  } else {
+
+    return { ...item,
+             enhancement: item.enhancement - 5
+      };
+  };
 }
 
 function repair(item) {
