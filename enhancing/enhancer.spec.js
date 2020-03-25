@@ -3,6 +3,8 @@ const enhancer = require("./enhancer.js");
 const itemTest = { name: "thing", durability: 10, enhancement: 10 };
 const itemTest2 = { name: "thing", durability: 10, enhancement: 20 };
 const itemTest3 = { name: "thing", durability: 10, enhancement: 16 };
+const itemTest4 = { name: "brolito", durability: 10, enhancement: 0 };
+const itemTest5 = { name: "Mazito", durability: 10, enhancement: 2 };
 
 describe("enhancers", () => {
   describe("repair", () => {
@@ -59,6 +61,28 @@ describe("enhancers", () => {
   describe("get", () => {
     it("doesn't crash", () => {
       enhancer.get(itemTest);
+    });
+    it("works as expected", () => {
+      expect(enhancer.get(itemTest)).toEqual({
+        name: "[+10] thing",
+        durability: 10,
+        enhancement: 10
+      });
+      expect(enhancer.get(itemTest2)).toEqual({
+        name: "[+20] thing",
+        durability: 10,
+        enhancement: 20
+      });
+      expect(enhancer.get(itemTest4)).toEqual({
+        name: "brolito",
+        durability: 10,
+        enhancement: 0
+      });
+      expect(enhancer.get(itemTest5)).toEqual({
+        name: "[+2] Mazito",
+        durability: 10,
+        enhancement: 2
+      });
     });
   });
 });

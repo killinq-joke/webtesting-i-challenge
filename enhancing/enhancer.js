@@ -32,7 +32,7 @@ function get(item) {
     return { ...item }
   } else if (item.enhancement > 0) {
     return { ...item,
-             name: `[+${item.enhancement}]${item.name}`
+             name: `[+${item.enhancement}] ${item.name}`
     };
   } else {
    return  null
