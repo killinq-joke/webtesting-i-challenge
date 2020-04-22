@@ -85,6 +85,21 @@ describe("enhancer", () => {
     });
   });
   describe("get()", () => {
-    it("things", () => {});
+    it("returns the same item if enhancement is 0", () => {
+      expect(
+        enhancer.get({ name: "axe", durability: 100, enhancement: 0 })
+      ).toEqual({ name: "axe", durability: 100, enhancement: 0 });
+      expect(
+        enhancer.get({ name: "scythe", durability: 50, enhancement: 0 })
+      ).toEqual({ name: "scythe", durability: 50, enhancement: 0 });
+    });
+    it("returns the item with [+levelOfEnhancement] in the name", () => {
+        expect(
+          enhancer.get({ name: "axe", durability: 100, enhancement: 1 })
+        ).toEqual({ name: "[+1] axe", durability: 100, enhancement: 1 });
+        expect(
+          enhancer.get({ name: "thing", durability: 40, enhancement: 17 })
+        ).toEqual({ name: "[+17] thing", durability: 40, enhancement: 17 });
+    })
   });
 });
